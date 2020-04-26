@@ -1,0 +1,29 @@
+const path = require('path');
+
+module.exports = {
+  mode: process.env.NODE_ENV || 'development',
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['crank']
+          }
+        }
+      }
+    ]
+  },
+  devServer: {
+    index: 'index.html',
+    compress: true,
+    port: 9000
+  }
+};
